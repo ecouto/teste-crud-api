@@ -1,0 +1,13 @@
+"use strict";
+exports.__esModule = true;
+const express_1 = require("express");
+const Product_controlle_1 = require("./controllers/Product.controlle");
+const Product_validators_1 = require("./validators/Product.validators");
+const routes = express_1.Router();
+const validators = new Product_validators_1.default();
+routes.get('/products', Product_controlle_1.default.retrieveAll);
+routes.post('/products', validators.createProductValidate(), Product_controlle_1.default.create);
+routes.get('/products/:id', Product_controlle_1.default.retrieveProductById);
+routes.put('/products/:id', Product_controlle_1.default.update);
+routes.delete('/products/:id', Product_controlle_1.default.delete);
+exports.default = routes;
